@@ -1,0 +1,88 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&family=Sixtyfour&family=Work+Sans:wght@300&display=swap');
+
+
+.login{
+    width: 100%;
+    height: 630px;
+    background-image: linear-gradient(to right, #11122d, #1e2057);
+}
+
+.navbar{
+    height: 50px;
+    width: 100%;
+    padding: 15px;    
+}
+
+.coinapi{
+    color: white;
+    font-size: 30px;
+    font-family: "Sixtyfour", sans-serif;
+}
+
+.access{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login_area{
+    height: 400px;
+    width: 400px;
+    background-color: transparent;
+    border: 0.8px solid white;
+    border-radius: 20px ;
+    padding: 10px;
+}
+
+.title{
+    color: white;
+    font-size: 15px;
+    font-family: "Sixtyfour", sans-serif ;
+}
+
+.form{
+    display: block;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin: 30px;
+}
+
+.form span{
+    display: flex;
+    color: white;
+}
+
+.form input{
+    width: 350px;
+    height: 30px;
+    display: flex;
+    background-color: transparent;
+    border: 0 ;
+    border-bottom: 1px solid white;
+}
+
+
+.form button{
+    width: 300px;
+    height: 30px;
+    background-image: linear-gradient(to right, #de33ff, #883bff);
+    border: none;
+    border-radius: 20px;
+    margin: 20px;
+    color: white;
+}
+
+.button :hover{
+    width: 301px;
+    height: 31px;
+    cursor: pointer;
+    color: black;
+}
+
+.register{
+    color: white;
+    display: flex;
+    justify-content: center;
+}
