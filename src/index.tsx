@@ -5,8 +5,12 @@ import reportWebVitals from './reportWebVitals';
 import App from './App';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Login from './components/pages/Login';
-import Home from './components/pages/Home';
 import Register from './components/pages/Register';
+import Layout from './components/layout/Layout';
+import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query';
+import Home from './components/pages/Home';
+
+const queryClient = new QueryClient()
 
 const router = createBrowserRouter([
   {
@@ -14,22 +18,31 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "/home",
-    element: <Home />,
-  },
-  {
     path: "/register",
     element: <Register />,
   },
+  {
+
+    element: <Layout/>,
+    children: [
+      {
+        path: "/home",
+        element: <Home />,
+      },
+    ]
+  }
 ]);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
+    <React.StrictMode>
+      <QueryClientProvider client={queryClient}>
+          <RouterProvider router={router} />
+      </QueryClientProvider>
+    </React.StrictMode>
+  
 );
 
 // If you want to start measuring performance in your app, pass a function
