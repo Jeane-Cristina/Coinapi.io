@@ -9,6 +9,7 @@ import Register from './components/pages/Register';
 import Layout from './components/layout/Layout';
 import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query';
 import Home from './components/pages/Home';
+import Favorite from './components/pages/Favorite';
 
 const queryClient = new QueryClient()
 
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/home",
         element: <Home />,
+      },
+      {
+        path:"/favorites",
+        element: <Favorite/>,
       },
     ]
   }

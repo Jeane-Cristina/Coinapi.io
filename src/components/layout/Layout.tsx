@@ -13,8 +13,8 @@ export default function Layout (){
             <div className={styles.side_nav}>
                 <span>COINAPI.IO</span>
                 <div className={styles.options_menu}>
-                    <div className={styles.option}><div className={styles.icon_menu}><IoHomeOutline /></div>  HOME</div>
-                    <div className={styles.option}><div className={styles.icon_menu}><IoIosStarOutline /></div> FAVORITOS</div>
+                    <a href='/home'><div className={styles.option}><div className={styles.icon_menu}><IoHomeOutline /></div>  HOME</div></a>
+                    <a href= '/favorites'><div className={styles.option}><div className={styles.icon_menu}><IoIosStarOutline /></div> FAVORITOS</div></a>
                 </div>
             </div>
             <div className={styles.body}>

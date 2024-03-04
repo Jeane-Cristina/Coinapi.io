@@ -4,6 +4,9 @@
     width: 100%;
     background-color:rgba(29,25,52,255) ;
     color: white;
+    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 .style_table{
@@ -28,6 +31,22 @@ table th{
     color: #7b7f97;
 }
 
+.icons{
+    height: 20px;
+    width: 20px;
+    margin-left: 15px ;
+}
+
+.favorite{
+    font-size: 25px;
+}
+
+.favorite :hover{
+    color: yellow;
+    cursor: pointer;
+    font-size: 25px;
+}
+
 .assets_cryptos{
     text-transform: uppercase;
     font-family:"Open Sans", sans-serif ;
@@ -50,4 +69,24 @@ table th{
     color: white;
     background-image: linear-gradient(to right, #11122d, #1e2057);
     cursor: pointer;
+}
+
+.modal{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 200px auto;
+}
+
+.coin__principally__details{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-right: 3px solid blue;
+}
+
+.coin__principally__details > img {
+    height: 60px;
+    width: 60px;
 }
