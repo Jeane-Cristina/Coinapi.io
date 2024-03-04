@@ -7,7 +7,7 @@ export class AssetService {
         const authorization = {
             headers : {
                 'Accept': 'text/plain', 
-                'X-CoinAPI-Key': 'B71E8343-1787-4928-853B-5C4373542567'
+                'X-CoinAPI-Key': 'BB0285F9-649D-495C-AB2B-BBDE537367D0'
             }
         };
 
@@ -24,7 +24,7 @@ export class AssetService {
         const authorization = {
             headers : {
                 'Accept': 'application/json', 
-                'X-CoinAPI-Key': 'B71E8343-1787-4928-853B-5C4373542567'
+                'X-CoinAPI-Key': 'BB0285F9-649D-495C-AB2B-BBDE537367D0'
             }
         };
 
