@@ -10,6 +10,8 @@ import Layout from './components/layout/Layout';
 import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query';
 import Home from './components/pages/Home';
 import Favorite from './components/pages/Favorite';
+import { Provider } from 'react-redux';
+import { store } from './components/features/store';
 
 const queryClient = new QueryClient()
 
@@ -43,9 +45,11 @@ const root = ReactDOM.createRoot(
 );
 root.render(
     <React.StrictMode>
-      <QueryClientProvider client={queryClient}>
-          <RouterProvider router={router} />
-      </QueryClientProvider>
+      <Provider store={store}>
+        <QueryClientProvider client={queryClient}>
+            <RouterProvider router={router} />
+        </QueryClientProvider>
+      </Provider>
     </React.StrictMode>
   
 );

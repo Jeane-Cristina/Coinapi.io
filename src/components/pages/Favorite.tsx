@@ -2,6 +2,8 @@ import { QueryClient, useQuery } from '@tanstack/react-query'
 import styles from './Favorite.module.css';
 import { useEffect, useState } from 'react';
 import { AssetService } from '../services/asset-service';
+import { useSelector } from 'react-redux';
+import { RootState } from '../features/store';
 
 const queryClient = new QueryClient();
 
@@ -16,23 +18,8 @@ export default function Favorite (){
 
     const [favoritedAssets, setFavoritedAssets] = useState<any[]>();
 
-    const assetService = new AssetService();
-    const { data: assets, isLoading: isLoadingAssets, error: loadAssetsError, isFetching } = useQuery ({
-        queryKey: ['assets'],
-        queryFn: async () => {
-
-            return await assetService.getAllCoins() ;
-            
-        }
-    });
-
-    const { data: assetsIcons, isLoading: isLoadingAssetsIcons, error: loadAssetsIconsError, isFetching: isLoadingIcons } = useQuery ({
-        queryKey: ['assetsIcons'],
-        queryFn: async () => {
-            return await assetService.getAssetCoins();
-            
-        }
-    });
+    const assets = useSelector((state: RootState) => state.coinAPI.assets);
+    const assetsIcons = useSelector((state: RootState) => state.coinAPI.assetsIcons);
 
     useEffect(() => {
 

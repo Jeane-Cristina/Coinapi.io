@@ -53,7 +53,7 @@
 .top_nav{
     background-image: linear-gradient(to right, #1e2057, #11122d);
     padding: 15px;
-    padding-left: 55px;
+    padding-left: 15px;
 }
 
 .search_area{
@@ -81,7 +81,8 @@
 
 .main{
     display: flex;
-    background-color: #FFF;
+    flex-direction: column;
+    background-image: linear-gradient(to right, #1e2057, #11122d);
     overflow: hidden;
 }
 

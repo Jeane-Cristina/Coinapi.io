@@ -1,16 +1,16 @@
-import { QueryClient, useQuery } from '@tanstack/react-query'
 import styles from './Home.module.css'
-import axios from 'axios'
-import { assert, error } from 'console';
-import { useEffect, useMemo, useState } from 'react';
-import { AssetService } from '../services/asset-service';
+import { useEffect, useState } from 'react';
 import { IoIosStarOutline } from "react-icons/io";
 import { IoIosStar } from "react-icons/io";
 import Modal from './Modal';
-
-const queryClient = new QueryClient();
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../features/store';
+import { AssetService } from '../services/asset-service';
+import { setAssets } from '../features/coinAPI/coinAPISlice';
 
 export default function Home(){
+
+    const dispatch = useDispatch();
 
     const [currentPage, setCurrentPage] = useState(1);
     const [page, setPage] = useState<any>(undefined);
@@ -24,23 +24,11 @@ export default function Home(){
         return initialValue;
     });
 
-    const assetService = new AssetService();
-    const { data: assets, isLoading: isLoadingAssets, error: loadAssetsError, isFetching } = useQuery ({
-        queryKey: ['assets'],
-        queryFn: async () => {
+    
+    const assets = useSelector((state: RootState) => state.coinAPI.assets);
+    const assetsIcons = useSelector((state: RootState) => state.coinAPI.assetsIcons);
+    //const assetHistory = useSelector((state: RootState) => state.coinAPI.assetHistory);
 
-            return await assetService.getAllCoins() ;
-            
-        }
-    });
-
-    const { data: assetsIcons, isLoading: isLoadingAssetsIcons, error: loadAssetsIconsError, isFetching: isLoadingIcons } = useQuery ({
-        queryKey: ['assetsIcons'],
-        queryFn: async () => {
-            return await assetService.getAssetCoins();
-            
-        }
-    });
 
 
     useEffect(() => {
@@ -74,11 +62,9 @@ export default function Home(){
     }, [currentPage, assets]);
 
 
-    if (isLoadingAssets || isLoadingAssetsIcons){
+    if (!assets){
         return <div className='loading'>Carregando Assets...</div>
     }
-
-    if(loadAssetsError) return <div className='loading'>{loadAssetsError.message}</div>
     
 
     async function handleFavoriteAsset(assetId: string): Promise<void>{
@@ -111,8 +97,34 @@ export default function Home(){
         setOpenModal(true);
     }
 
+    async function handleSelectCoinMetric(value: string): Promise<void>{
+
+        const assetService = new AssetService();
+        const response = await assetService.findAssetById(value);
+
+        const payload = {
+            assets: response
+        };
+
+        dispatch(setAssets(payload))
+    }
+
     return(
         <>
+            <div className={styles.all__metrics}>
+                <div className={styles.metrics__container}>
+                    <label>Coins: </label>
+                    <div className={styles.metric} onClick={() => { handleSelectCoinMetric('EUR') }}>EUR</div>
+                    <div className={styles.metric} onClick={() => { handleSelectCoinMetric('BRL') }}>BRL</div>
+                    <div className={styles.metric} onClick={() => { handleSelectCoinMetric('USD') }}>USD</div>
+                </div>
+                <div className={styles.metrics__container}>
+                    <label>Others: </label>
+                    <div className={styles.metric} onClick={() => { handleSelectCoinMetric('BTC') }}>BTC</div>
+                    <div className={styles.metric} onClick={() => { handleSelectCoinMetric('ETH') }}>ETH</div>
+                </div>
+            </div>
+            <br />
             <div className={styles.home}>
                 <div className={styles.style_table}>
                     <table border={1} className={styles.table}>
@@ -147,12 +159,11 @@ export default function Home(){
                 <button
                 className={styles.button_page}
                 onClick={() => setCurrentPage((prevPage) => prevPage + 1)}
-                disabled={isFetching}
                 >
                 Próxima Página
                 </button>
             </div>
-            {(openModal && selectedAsset) && 
+            {(openModal && selectedAsset ) && 
                 <Modal onClose={handleCloseModal}>
                     <div className={styles.modal}>
                         <div className={styles.coin__principally__details}>
@@ -167,3 +178,4 @@ export default function Home(){
       </>
     )
 }
+

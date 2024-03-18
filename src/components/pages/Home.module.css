@@ -76,6 +76,8 @@ table th{
     height: 100%;
     display: grid;
     grid-template-columns: 200px auto;
+    align-items: center;
+    justify-content: center;
 }
 
 .coin__principally__details{
@@ -89,4 +91,49 @@ table th{
 .coin__principally__details > img {
     height: 60px;
     width: 60px;
+}
+
+.name{
+    text-transform: uppercase;
+    font-family:"Open Sans", sans-serif ;
+}
+
+.metrics__container{
+    min-width: 200px;
+    width: 300px;
+    max-width: 100%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-left: 10px;
+}
+
+.metric{
+    min-width: 50px;
+    width: 50px;
+    height: 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background-color: bisque;
+    color: #1d1f55;
+    font-family:"Open Sans", sans-serif ;
+    text-transform: uppercase;
+    font-size: 10px;
+}
+
+.metrics__container > label {
+    font-family:"Open Sans", sans-serif ;
+    font-size: 13px;
+    color: antiquewhite;
+}
+
+.all__metrics{
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    gap: 20px;
 }
